@@ -1,0 +1,35 @@
+@startuml
+start
+:The teacher navigates to the MATERIALS section;
+if (Does the teacher have subjects they are responsible for) then (Yes)
+:The system redirects the user to a page containing
+a list of the subjects they are responsible for;
+else (No)
+:The system displays a message indicating that they
+do not have a subject they can post their materials to;
+stop
+endif
+if (Does the user want to scroll through all the subjects) then (Yes)
+:The teacher scrolls through the list and finds the desired subject;
+else (No)
+:The teacher searches for the name of the subject;
+endif
+:The teacher says they want to POST on the subject they have material for;
+:The system shows a form with information to fill about the new material;
+if (Does the material have files associated with it) then (Yes)
+:The teacher enters material title and
+description and uploads material files;
+else (No)
+: The teacher enters the material title
+and the description is the material itself;
+endif
+:The teacher says they want to POST;
+if (Could the system save the file) then (Yes)
+:The system saves the file to storage;
+else (No)
+:The upload fails due to file size, the system
+displays a message indicating the file was too large;
+endif
+:The system notifies the teacher whether the file was successfully saved;
+stop
+@enduml
