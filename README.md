@@ -1,4 +1,4 @@
-# NSWI041
+# Study Organization System
 
 Make study organization and material sharing easier for students and the possibility of sharing sources with their students. 
 We help students deal with their lack of motivation and study organization with the help of the SIS integration they can automatically import their subjects and track their progress across semester. 
