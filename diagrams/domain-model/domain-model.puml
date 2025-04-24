@@ -1,0 +1,79 @@
+@startuml
+title SchoolOrganizationSystem Domain model
+'skinparam linetype ortho
+top to bottom direction
+hide empty members
+
+skinparam class {
+  BackgroundColor White
+  BorderColor Black
+  ArrowColor Black
+}
+
+class User {
+  + name
+}
+class Student
+class Teacher
+
+
+class "Study Group" as StudyGroup {
+  + passing conditions
+}
+
+class Assignment {
+  + rating
+}
+
+class Subject {
+  + code
+  + name
+}
+
+class Material {
+  + title
+  + description
+  + files
+}
+
+enum Rating {
+  Like
+  Dislike
+}
+
+class Review {
+  + rating
+  + comment
+}
+
+class Tracker {}
+
+
+' Inheritance
+Student -|> User
+Teacher --|> User
+
+' Associations
+
+Student "0..n" ----> "0..n" StudyGroup : in
+StudyGroup "1" *-- "0..n" Assignment : has
+Student "0..n" --> "0..n" Assignment : completes
+
+Tracker "1" --> "0..n" StudyGroup : contains
+Tracker "1" --> "0..n" Student : contains
+Student "0..n" --> "1" Tracker : views
+StudyGroup "0..n" --> "1" Subject : for
+
+Student "1" --> "0..n" Review : adds
+Student "1" --> "0..n" Material : adds
+Teacher "1" --> "0..n" Review : adds
+Teacher "1" --> "0..n" Material : adds
+Teacher "0..n" --> "0..n" Subject : teaches
+Teacher "1" --> "0..n" Assignment : assigns
+
+Rating -> Review
+Review "0..n" --* "1" Material : of
+
+Material "0..n" --* "1" Subject : for
+
+@enduml
