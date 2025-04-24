@@ -1,0 +1,37 @@
+@startuml Compare Activity
+title UC-004 – Compare Activity (if/else-centric)
+
+start
+:Student on Home page;
+:Navigates Class Activity;
+:System retrieves semester summaries;
+if (Summaries exist?) then (Yes)
+  :Show overall comparison;
+else (No)
+  :Display “No activity data\navailable.”;
+  stop
+endif
+
+
+:Click Compare Activity by Subjects;
+
+if (Student has subjects?) then (Yes)
+  :System lists enrolled subjects;
+else (No)
+  :Display “You have no subjects yet.”;
+  stop
+endif
+
+
+:Student selects subjects;
+:Click Detailed View;
+
+if (Classmates shared data?) then (Yes)
+  :System shows detailed table\n(Student | Completed activities);
+else (No)
+  :Display “Details hidden – classmates\ndid not share data.”;
+endif
+
+:Student reviews comparison;
+stop
+@enduml
