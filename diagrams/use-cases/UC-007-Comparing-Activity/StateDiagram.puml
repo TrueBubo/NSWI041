@@ -8,7 +8,7 @@ state "Viewing Hidden Details" as DetailsHidden
 
 [*] --> ViewingSummaries : navigate to Class Activity
 ViewingSummaries --> SelectingSubjects : click “Compare by Subjects” [summaries exist]
-ViewingSummaries --> [*] : [no summaries]
+
 
 SelectingSubjects --> DetailsVisible : click “Detailed View” [subjects exist & data shared]
 SelectingSubjects --> DetailsHidden  : click “Detailed View” [subjects exist & no consent]
