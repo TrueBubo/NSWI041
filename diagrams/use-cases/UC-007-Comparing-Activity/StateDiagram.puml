@@ -1,19 +1,24 @@
 @startuml CompareActivity
 hide empty description
 
-state "Viewing Summaries" as ViewingSummaries
-state "Selecting Subjects" as SelectingSubjects
-state "Viewing Detailed Table" as DetailsVisible
-state "Viewing Hidden Details" as DetailsHidden
+state "Showing\nsummaries" as Summary
+state "No activity\ndata message" as NoData
+state "No subjects\nmessage" as NoSubjects
+state "Selecting\nsubjects" as Selecting
+state "Detailed\ntable visible" as DetailsVisible
+state "Details\nhidden (no consent)" as DetailsHidden
 
-[*] --> ViewingSummaries : navigate to Class Activity
-ViewingSummaries --> SelectingSubjects : click “Compare by Subjects” [summaries exist]
+[*] --> Summary : navigate to ClassActivity 
 
+Summary --> NoData      : no activity data
+Summary --> NoSubjects  : move to "Compare by Subjects" no subjects
+Summary --> Selecting   : move to "Compare by Subjects" subjects exist
 
-SelectingSubjects --> DetailsVisible : click “Detailed View” [subjects exist & data shared]
-SelectingSubjects --> DetailsHidden  : click “Detailed View” [subjects exist & no consent]
-SelectingSubjects --> [*]            : [no subjects]
+Selecting --> DetailsVisible : click "Detailed View" student shared data                         
+Selecting --> DetailsHidden  : click "Detailed View" student NOT shared data
 
-DetailsVisible --> [*] : review complete
-DetailsHidden  --> [*] : review complete
+NoData  --> [*]
+NoSubjects  --> [*] 
+DetailsVisible --> [*] : reviewComplete
+DetailsHidden  --> [*] : reviewComplete
 @enduml
