@@ -1,0 +1,19 @@
+@startuml
+hide empty description
+
+state "Showing subjects" as ShowingSubjects
+state "No subjects" as NoSubjects
+state "Filling form" as FormFilling
+state "Material details filled" as Filled
+state "Material details incomplete" as Incomplete
+
+[*] --> ShowingSubjects : Navigates to the Materials section
+
+ShowingSubjects --> NoSubjects : No subjects to select
+ShowingSubjects --> FormFilling : Move to the Post section
+FormFilling --> Incomplete : Did not enter required fields
+FormFilling --> Filled : Filled all the required fields
+Incomplete --> FormFilling : Wanted to post incomplete material
+Filled --> [*] : Post the material
+
+@enduml
