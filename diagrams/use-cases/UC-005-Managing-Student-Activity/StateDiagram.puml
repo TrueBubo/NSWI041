@@ -1,0 +1,31 @@
+@startuml ManageStudentActivityStates
+hide empty description
+
+state "Overview\nvisible" as Overview
+state "Subject\nselected" as SubjectSelected
+state "No students\nmessage" as NoStudents
+state "Student\nselected" as StudentSelected
+state "Point form\nvisible" as PointForm
+state "Validation\nerror" as ValidationError
+state "Points\nupdated" as PointsUpdated
+state "Min pass points\nupdated" as MinPointsSet
+
+[*] --> Overview : teacher on dashboard
+
+Overview --> SubjectSelected : selects subject
+
+SubjectSelected --> NoStudents : no students enrolled
+SubjectSelected --> StudentSelected : students available
+
+StudentSelected --> PointForm : clicks Log Points
+
+PointForm --> PointsUpdated : submits valid form
+PointForm --> ValidationError : invalid input (< 0)
+
+PointsUpdated --> MinPointsSet : sets min points
+MinPointsSet --> [*]
+
+ValidationError --> [*]
+NoStudents --> [*]
+@enduml
+

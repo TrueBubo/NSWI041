@@ -1,0 +1,34 @@
+@startuml ManageStudentActivity
+title UC-008 – Manage Student Activity (if/else-centric)
+
+start
+:Teacher on subject overview;
+:Go to Manage Activity;
+
+:Select subject;
+
+if (Students enrolled?) then (Yes)
+  :Show student activity overview;
+  :Select student;
+  :Go to Log Points;
+  
+  :Show point form (increment/decrement);
+
+  if (Form is valid?) then (Yes)
+    :Submit form;
+    :System saves input;
+    :Update student’s point log;
+  else (No)
+    :Show validation error (e.g. points < 0);
+  endif
+
+  :Optionally set min points to pass;
+  :System saves min points;
+
+else (No)
+  :Show message "No students enrolled in this subject.";
+endif
+
+stop
+@enduml
+
