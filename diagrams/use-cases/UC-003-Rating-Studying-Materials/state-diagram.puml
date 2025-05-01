@@ -1,0 +1,28 @@
+@startuml RatingStudyingMaterialsStates
+title UC-003 – Rating Studying Materials (State Diagram)
+hide empty description
+
+state "Home\nPage" as Home
+state "Subject\nSelection" as SubjectSelection
+state "Materials\nVisible" as MaterialsVisible
+state "Material\nSelected" as MaterialSelected
+state "Student\nComments" as CommentWritten
+state "Like/\nDislike" as Rated
+state "System\ninforms the\nstudent" as Informs
+
+[*] --> Home : student logged in
+
+Home --> SubjectSelection : student clicks Materials
+SubjectSelection --> MaterialsVisible : student picks a subject
+
+MaterialsVisible --> MaterialSelected : student selects a material
+MaterialSelected --> CommentWritten : clicks comment
+MaterialSelected --> Rated : clicks like/dislike
+
+CommentWritten --> Informs : comment saved
+CommentWritten --> Informs : comment not saved
+
+Rated --> Informs
+
+Informs --> [*] : System redirects to "Materials" page
+@enduml

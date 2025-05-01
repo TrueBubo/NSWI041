@@ -1,0 +1,44 @@
+@startuml RatingStudyingMaterials
+title UC-003 – Rating Studying Materials
+
+start
+:Student on Home Page;
+:Clicks 'Materials' button;
+
+if (Enrolled subjects exist?) then (Yes)
+  :Show list of subjects (enrolled on top);
+else (No)
+  :Show message "No enrolled subjects.";
+  :Student uses search to find a subject;
+endif
+
+:Student selects subject;
+
+:Show materials for subject;
+
+if (Search by catchphrase?) then (Yes)
+  :Student enters keyword;
+  :Selects material;
+else (No)
+  :Student scrolls and selects material;
+endif
+
+:Show material pop-up with rating & comment options;
+
+if (Student wants to write a Comment?) then (Yes)
+  :Student writes a comment;
+  :student clicks on "Submit";
+  else (No)
+  :Student clicks on Like/Dislike Button;
+endif
+
+if (System successfully saves the operation) then (Yes)
+    :System informs of a successful commenting;
+    else (No)
+    :System warns user of unsuccessful operation;
+    :System advises user to save the comment locally and try again later;
+    endif
+:System redirects the student to the "Materials" page;
+
+stop
+@enduml
